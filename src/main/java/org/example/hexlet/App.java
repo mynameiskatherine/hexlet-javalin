@@ -13,10 +13,12 @@ public class App {
             ctx.result("Hello, " + name + "!");
         });
         app.post("/users", ctx -> ctx.result("POST /users"));
+
         return app;
     }
+
     public static void main(String[] args) {
-        var app = getApp();
+        var app = App1.getApp();
         app.start(7070);
     }
 }
