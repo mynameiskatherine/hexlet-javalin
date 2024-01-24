@@ -18,7 +18,7 @@ public class App {
     }
 
     public static void main(String[] args) {
-        var app = App1.getApp();
+        var app = App2.getApp();
         app.start(7070);
     }
 }
