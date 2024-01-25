@@ -1,16 +1,19 @@
-<!doctype html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Hexlet!</title>
-    </head>
-    <body>
-    <div class="col-lg-8 mx-auto p-4 py-md-5">
-        <main>
-        <h1 class="text-body-emphasis">Привет, Хекслет!</h1>
-        <p>Javalin + jte</p>
-        </main>
-    </div>
-    </body>
-</html>
+@template.layout.page(
+    title = @`
+    <title>Welcome to Hexlet Javalin Test!</title>
+`,
+    header = @`
+        <h1>Welcome to the start page of Hexlet Javalin Test!</h1>
+`,
+    main = @`
+            <h2>Bla bla bla long story about this microframework and this project</h2>
+            <h3>List of contents:</h3>
+            <ul>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/users">Users</a></li>
+            </ul>
+`,
+    footer = @`
+    <p>bye-bye footer</p>
+`
+)

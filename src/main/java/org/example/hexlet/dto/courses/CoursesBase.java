@@ -1,4 +1,4 @@
-package org.example.hexlet.dto;
+package org.example.hexlet.dto.courses;
 
 import org.example.hexlet.model.Course;
 
@@ -16,10 +16,6 @@ public class CoursesBase {
             new Course("JS", "JS Basics"),
             new Course("Ruby", "Ruby Basics"));
 
-    public static Course getCourseById(Integer id) {
-        var result = courseList.stream().filter(c -> Objects.equals(c.getId(), id)).findFirst();
-        return result.orElseThrow();
-    }
     public static List<Course> getCourseBase() {
         return courseList;
     }

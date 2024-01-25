@@ -2,7 +2,7 @@ package org.example.hexlet;
 
 import io.javalin.Javalin;
 
-public class App1 {
+public class AppPathParam {
     public static Javalin getApp() {
         var app = Javalin.create(config -> {
             config.plugins.enableDevLogging();
