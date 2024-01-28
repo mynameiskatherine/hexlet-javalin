@@ -12,5 +12,6 @@ import java.util.List;
 public class UsersPage {
     private String title;
     private List<User> userList;
+    private String search;
 }
 // END

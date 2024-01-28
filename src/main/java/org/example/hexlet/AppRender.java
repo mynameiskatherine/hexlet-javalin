@@ -13,10 +13,13 @@ import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import org.example.hexlet.model.User;
 
-import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class AppRender {
 
@@ -32,7 +35,14 @@ public class AppRender {
             ctx.render("index.jte");
         });
         app.get("/courses", ctx -> {
-            var page = new CoursesPage(COURSES, "Курсы по программированию");
+            var search = ctx.queryParam("search");
+            List<Course> courses = new ArrayList<>();
+            if (search != null) {
+                courses = COURSES.stream().filter(c -> StringUtils.containsIgnoreCase(c.getName(), search) || StringUtils.containsIgnoreCase(c.getDescription(), search)).collect(Collectors.toList());
+            } else {
+                courses = COURSES;
+            }
+            var page = new CoursesPage(courses, "Курсы по программированию", search);
             ctx.render("courses/index.jte", Collections.singletonMap("page", page));
         });
         app.get("/courses/{id}", ctx -> {
@@ -41,7 +51,14 @@ public class AppRender {
             ctx.render("courses/show.jte", Collections.singletonMap("page", page));
         });
         app.get("/users", ctx -> {
-            var page = new UsersPage("List of users", USERS);
+            var search = ctx.queryParam("search");
+            List<User> users = new ArrayList<>();
+            if (search != null) {
+                users = USERS.stream().filter(c -> StringUtils.containsIgnoreCase(c.getFirstName(), search) || StringUtils.containsIgnoreCase(c.getLastName(), search)).collect(Collectors.toList());
+            } else {
+                users = USERS;
+            }
+            var page = new UsersPage("List of users", users, search);
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
         app.get("/users/{id}", ctx -> {

@@ -9,8 +9,16 @@ header = @`
     <h1>${page.getTitle()}</h1>
 `,
 main = @`
+    <form action="/users" method="get">
+        <input type="search" required name="search" value="${page.getSearch()}">
+        <input type="submit" value="Search">
+    </form>
     @if(page.getUserList().isEmpty())
-        <p>No Users added</p>
+        @if(page.getSearch() != null)
+            <p>No users found</p>
+        @else
+            <p>No Users added</p>
+        @endif
     @else
         @for(var user : page.getUserList())
             <table>
