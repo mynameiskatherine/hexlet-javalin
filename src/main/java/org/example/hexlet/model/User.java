@@ -6,21 +6,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public final class User {
-
-    private long id;
-    private String firstName;
-
-    @ToString.Include
-    private String lastName;
-
+    private Long id;
+    private String name;
     private String email;
+    private String password;
 
-    public User(long id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
+        this.password = password;
     }
 }

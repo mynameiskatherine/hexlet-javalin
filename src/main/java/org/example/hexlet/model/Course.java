@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public final class Course {
-    private static Integer counter = 0;
+//    private static Integer counter = 0;
     private Integer id;
 
     @ToString.Include
@@ -18,8 +18,8 @@ public final class Course {
     public Course(String name, String description) {
         this.name = name;
         this.description = description;
-        this.id = counter + 1;
-        counter = counter + 1;
+//        this.id = counter + 1;
+//        counter = counter + 1;
     }
 
 }

@@ -1,16 +1,15 @@
 package org.example.hexlet;
 
-import gg.jte.CodeResolver;
-import gg.jte.ContentType;
-import gg.jte.TemplateEngine;
-import gg.jte.resolve.DirectoryCodeResolver;
 import io.javalin.Javalin;
 import org.example.hexlet.dto.courses.CoursePage;
 import org.example.hexlet.dto.courses.CoursesPage;
 import org.example.hexlet.dto.courses.CoursesBase;
+import org.example.hexlet.dto.employee.EmployeePage;
+import org.example.hexlet.dto.employee.EmployeesPage;
 import org.example.hexlet.dto.users.UserPage;
 import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
+import org.example.hexlet.model.Employee;
 import org.example.hexlet.model.User;
 
 import java.util.ArrayList;
@@ -20,10 +19,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.example.hexlet.repository.UserRepository;
 
 public class AppRender {
 
-    private static final List<User> USERS = Data.getUsers();
+    private static final List<Employee> EMPLOYEES = Data.getEmployees();
     private static final List<Course> COURSES = CoursesBase.getCourseBase();
 
     public static Javalin getApp() {
@@ -50,21 +50,38 @@ public class AppRender {
             var page = new CoursePage(COURSES.stream().filter(c -> Objects.equals(c.getId(), id)).findFirst().orElseThrow());
             ctx.render("courses/show.jte", Collections.singletonMap("page", page));
         });
-        app.get("/users", ctx -> {
+        app.get("/employees", ctx -> {
             var search = ctx.queryParam("search");
-            List<User> users = new ArrayList<>();
+            List<Employee> employees = new ArrayList<>();
             if (search != null) {
-                users = USERS.stream().filter(c -> StringUtils.containsIgnoreCase(c.getFirstName(), search) || StringUtils.containsIgnoreCase(c.getLastName(), search)).collect(Collectors.toList());
+                employees = EMPLOYEES.stream().filter(c -> StringUtils.containsIgnoreCase(c.getFirstName(), search) || StringUtils.containsIgnoreCase(c.getLastName(), search)).collect(Collectors.toList());
             } else {
-                users = USERS;
+                employees = EMPLOYEES;
             }
-            var page = new UsersPage("List of users", users, search);
+            var page = new EmployeesPage("List of Employees", employees, search);
+            ctx.render("employees/index.jte", Collections.singletonMap("page", page));
+        });
+        app.get("/employees/{id}", ctx -> {
+            var id = ctx.pathParamAsClass("id", Long.class).get();
+            var page = new EmployeePage(EMPLOYEES.stream().filter(u -> Objects.equals(u.getId(), id)).findFirst().orElseThrow());
+            ctx.render("employees/show.jte", Collections.singletonMap("page", page));
+        });
+        app.get("/users", ctx -> {
+            var page = new UsersPage(UserRepository.getEntities(), null);
             ctx.render("users/index.jte", Collections.singletonMap("page", page));
         });
-        app.get("/users/{id}", ctx -> {
-            var id = ctx.pathParamAsClass("id", Long.class).get();
-            var page = new UserPage(USERS.stream().filter(u -> Objects.equals(u.getId(), id)).findFirst().orElseThrow());
-            ctx.render("users/show.jte", Collections.singletonMap("page", page));
+        app.get("/users/build", ctx -> {
+            ctx.render("users/build.jte");
+        });
+        app.post("/users", ctx -> {
+            var name = ctx.formParam("name").trim();
+            var email = ctx.formParam("email").trim().toLowerCase();
+            var password = ctx.formParam("password");
+            var passwordConfirmation = ctx.formParam("passwordConfirmation");
+
+            var user = new User(name, email, password);
+            UserRepository.save(user);
+            ctx.redirect("/users");
         });
 
         return app;

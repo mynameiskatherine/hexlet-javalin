@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class UsersPage {
-    private String title;
     private List<User> userList;
     private String search;
 }

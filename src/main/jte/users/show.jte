@@ -3,17 +3,10 @@
 
 @template.layout.page(
 title = @`
-    <title>User Id ${page.getUser().getId()}</title>
+    <title>page title</title>
 `,
 main = @`
-    <table>
-        <tr>
-            <td>${page.getUser().getId()}</td>
-            <td>${page.getUser().getFirstName()}</td>
-            <td>${page.getUser().getLastName()}</td>
-            <td>${page.getUser().getEmail()}</td>
-        </tr>
-    </table>
+    <p>content</p>
 `,
 footer = @`
     <p>bye-bye footer</p>
