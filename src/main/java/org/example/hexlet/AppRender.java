@@ -8,7 +8,6 @@ import org.example.hexlet.dto.courses.CoursesBase;
 import org.example.hexlet.dto.employee.EmployeePage;
 import org.example.hexlet.dto.employee.EmployeesPage;
 import org.example.hexlet.dto.users.BuildUserPage;
-import org.example.hexlet.dto.users.UserPage;
 import org.example.hexlet.dto.users.UsersPage;
 import org.example.hexlet.model.Course;
 import org.example.hexlet.model.Employee;
@@ -22,6 +21,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.example.hexlet.repository.UserRepository;
+import org.example.hexlet.utils.Data;
 
 public class AppRender {
 

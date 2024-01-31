@@ -1,4 +1,4 @@
-package org.example.hexlet;
+package org.example.hexlet.utils;
 
 import org.example.hexlet.model.Employee;
 import org.example.hexlet.model.User;

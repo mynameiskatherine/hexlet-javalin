@@ -14,6 +14,11 @@ public class UserRepository {
         entities.add(user);
     }
 
+    public static void delete(Long id) {
+        var user = UserRepository.find(id);
+        entities.remove(user);
+    }
+
     public static List<User> search(String term) {
         var users = entities.stream()
                 .filter(entity -> entity.getName().startsWith(term))

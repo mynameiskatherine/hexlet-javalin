@@ -12,5 +12,9 @@ import java.util.List;
 public class UsersPage {
     private List<User> userList;
     private String search;
+
+    public UsersPage(List<User> userList) {
+        this.userList = userList;
+    }
 }
 // END
