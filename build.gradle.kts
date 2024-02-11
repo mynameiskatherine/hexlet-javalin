@@ -32,6 +32,8 @@ dependencies {
     testCompileOnly("org.projectlombok:lombok:1.18.30")
     testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
     implementation("org.apache.commons:commons-lang3:3.12.0")
+    implementation("com.h2database:h2:2.2.220")
+    implementation("com.zaxxer:HikariCP:5.0.1")
 }
 
 tasks.test {

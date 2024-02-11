@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CourseRepository {
+public class CourseRepository extends BaseRepository {
     private static List<Course> entities = new ArrayList<Course>();
 
     public static void save(Course course) {

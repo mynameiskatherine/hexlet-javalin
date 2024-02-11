@@ -2,9 +2,9 @@ package gg.jte.generated.ondemand.layout;
 import gg.jte.Content;
 public final class JtepageGenerated {
 	public static final String JTE_NAME = "layout/page.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,1,1,11,11,11,11,14,14,16,16,16,18,18,20,20,20,22,22,24,24,24,26,26,28};
+	public static final int[] JTE_LINE_INFO = {0,0,1,1,1,16,16,16,16,19,19,21,21,21,23,23,25,25,25,27,27,29,29,29,31,31,33};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, Content title, Content header, Content main, Content footer) {
-		jteOutput.writeContent("\n\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\">\n    ");
+		jteOutput.writeContent("\n\n<!doctype html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\"\n          rel=\"stylesheet\"\n          integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\"\n          crossorigin=\"anonymous\">\n    ");
 		jteOutput.setContext("head", null);
 		jteOutput.writeUserContent(title);
 		jteOutput.writeContent("\n</head>\n<body>\n");
